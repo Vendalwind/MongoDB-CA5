@@ -1,22 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Comments!</title>
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="javascripts/comments.js"></script>
+    <title>MongoDB Validation Tutorial</title>
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="javascripts/comments.js"></script>
 </head>
 
 <body>
-<form id="commentForm" action="">
-<label for="name">Name: </label><input type="text" id="name" placeholder="Name"><br>
-<label for="comment">comment: </label><input type="text" id="comment" placeholder="Comment"><br>
-</form>
 
-<button id="postComment">Post Comment</button>
-<button id="getComments">Get Comments</button>
-<button id="deleteComments">Delete All</button>
-<div id="json"></div>
-<div id="done"></div>
-<div id="comments"></div>
+<div id="ColumnLeft">
+    <!--Left hand column div-->
+<h1 id="MainH">MongoDB Validation Feature Tutorial</h1>
+    <!--MainH will be hidden after first slide change -->
+<br>
+<h3 id="SlideTitle">In this tutorial, you'll learn all about MongoDB Validation</h3>
+<br>
+<p id="Para"></p>
+</div>
+
+<div id="ColumnRight">
+    <form id="Example" action="">
+        <input type="text" id="ExampleText" placeholder="Hey" disabled="true"><br>
+        <input type="text" id="Input" placeholder="Click to add text"><br>
+    </form>
+    <button id="Next">Next</button>
+    <button id="Run">Run</button>
+</div>
 </body>
 </html>
