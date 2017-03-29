@@ -4,24 +4,26 @@
     <title>MongoDB Validation Tutorial</title>
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="javascripts/comments.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/main.css"/>
+
 </head>
 
 <body>
-
+<h1 id="MainH">MongoDB Validation Feature Tutorial</h1>
+<!--MainH will be hidden after first slide change -->
 <div id="ColumnLeft">
     <!--Left hand column div-->
-<h1 id="MainH">MongoDB Validation Feature Tutorial</h1>
-    <!--MainH will be hidden after first slide change -->
 <br>
 <h3 id="SlideTitle">In this tutorial, you'll learn all about MongoDB Validation</h3>
 <br>
-<p id="Para"></p>
+<p id="Para">The purpose of MongoDB Validation is to make sure that all documents conform to a certain standard. Once you add the validation, all documents that are inserted into the database will have to meet the standard or the insertion will fail.
+    Ready to learn more? Press Next to try it out.</p>
 </div>
 
 <div id="ColumnRight">
     <form id="Example" action="">
-        <input type="text" id="ExampleText" placeholder="Hey" disabled="true"><br>
-        <input type="text" id="Input" placeholder="Click to add text"><br>
+        <textarea rows="15" id="ExampleText" placeholder="Hey" disabled="true"></textarea><br>
+        <textarea rows="15" id="Input" placeholder="Click to add text"></textarea><br>
     </form>
     <button id="Next">Next</button>
     <button id="Run">Run</button>
