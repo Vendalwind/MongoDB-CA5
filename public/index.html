@@ -3,14 +3,15 @@
     <head>
         <title>MongoDB Validation Tutorial</title>
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-        <script src="javascripts/index.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+        <script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
         <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
-
+        <script src="javascripts/index.js"></script>
     </head>
 
-    <body>
+    <body ng-app="LearnMongoApp" ng-controller="LearnMongoCtrl">
          
         <div class="container">
             
@@ -25,19 +26,19 @@
                 
                 <!-- For writing code -->
                 <div class="codebox-container">
-                    <p class="codeSnippetStart">{{codeSnippetStart}}</p>
-                    <textarea id="codeEditor" class="codebox">{{codeSnippet}}</textarea>
-                    <p class="codeSnippetEnd">{{codeSnippetEnd}}</p>
+                    <p class="codeSnippetStart">{{displayCodeSnippetStart}}</p>
+                    <textarea id="codeEditor" class="codebox">{{displayCodeSnippet}}</textarea>
+                    <p class="codeSnippetEnd">{{displayCodeSnippetEnd}}</p>
                 </div>
                 
                 <!-- For displaying the response -->
                 <div class="codebox-container">
-                    <textarea id="responseDisplay" class="codebox" readonly>{{responseFromServer}}</textarea>
+                    <textarea id="responseDisplay" class="codebox" readonly>{{displayResponseFromServer}}</textarea>
                 </div>
                 
                 <!-- The button that is clicked to perform the next action -->
                 <div class="codebox-container">
-                    <button id="action" class="btn pull-right">{{actionButtonMessage}}</button>
+                    <button id="action" class="btn btn-info pull-right" ng-click="currentNextStateAction()">{{displayActionButtonMessage}}</button>
                 </div>
                 
                 
