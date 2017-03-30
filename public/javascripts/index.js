@@ -11,7 +11,7 @@ angular.module('LearnMongoApp',['ui.router'])
         // Add all the states to it
         var state = {
             codeSnippetStart: "db.createCollection(\"contacts\", ",
-            codeSnippet: "\"validator\": {\r\n\t\"$and\": [{\r\n\t\t\"name\": {\r\n\t\t\t\"$exists\": true\r\n\t\t}\r\n\t}, {\r\n\t\t\"year_of_birth\": {\r\n\t\t\t\"$type\": \"int\",\r\n\t\t\t\"$lte\": 1994\r\n\t\t}\r\n\t}, {\r\n\t\t\"phone\": {\r\n\t\t\t\"$type\": \"int\"\r\n\t\t}\r\n\t}, {\r\n\t\t\"email\": {\r\n\t\t\t\"$type\": \"string\"\r\n\t\t}\r\n\t}]\r\n}",
+            codeSnippet: "{\r\n\t\"validator\": {\r\n\t\t\"$and\": [{\r\n\t\t\t\"name\": {\r\n\t\t\t\t\"$exists\": true\r\n\t\t\t}\r\n\t\t}, {\r\n\t\t\t\"year_of_birth\": {\r\n\t\t\t\t\"$type\": \"int\",\r\n\t\t\t\t\"$lte\": 1994\r\n\t\t\t}\r\n\t\t}, {\r\n\t\t\t\"phone\": {\r\n\t\t\t\t\"$type\": \"int\"\r\n\t\t\t}\r\n\t\t}, {\r\n\t\t\t\"email\": {\r\n\t\t\t\t\"$type\": \"string\"\r\n\t\t\t}\r\n\t\t}]\r\n\t}\r\n}",
             codeSnippetEnd: "});",
             blankOutResponseFromServer: true,
             actionButtonMessage: "Run",
@@ -80,7 +80,6 @@ angular.module('LearnMongoApp',['ui.router'])
         // state's data. They are the same as the data members found
         // in the state objects.
         $scope.displayCodeSnippetStart = "";
-        $scope.displayCodeSnippet = "";
         $scope.displayCodeSnippetEnd = "";
         $scope.displayActionButtonMessage = "";
         $scope.currentNextStateAction = function() {};
@@ -106,7 +105,7 @@ angular.module('LearnMongoApp',['ui.router'])
             // We will only change the code snippet if we need to
             if(stateToBeApplied.codeSnippet) {
                 $scope.displayCodeSnippetStart = stateToBeApplied.codeSnippetStart;
-                $scope.displayCodeSnippet = stateToBeApplied.codeSnippet;
+                document.getElementById('codeEditor').value = stateToBeApplied.codeSnippet;
                 $scope.displayCodeSnippetEnd = stateToBeApplied.codeSnippetEnd;
             }
             
@@ -141,11 +140,31 @@ angular.module('LearnMongoApp',['ui.router'])
         
         /* API calls */
         $scope.createCollection = function() {
-            return 'Successfully created';
+            var options = JSON.parse(document.getElementById('codeEditor').value);
+            var payload = {
+                name: 'contacts',
+                options: options
+            };
+            console.log(payload);
+            $http.post('/mongo/collections', JSON.stringify(payload))
+            .success(function(data) {
+                $scope.displayResponseFromServer = JSON.stringify(data, null, 4);
+            })
+            .error(function(data) {
+                $scope.displayResponseFromServer = JSON.stringify(data, null, 4);
+            });
         };
         
         $scope.insertIntoCollection = function() {
-            return 'A message from the server';
+            var payload = JSON.parse(document.getElementById('codeEditor').value);
+            console.log(payload);
+            $http.post('/mongo/collections/contacts', JSON.stringify(payload))
+            .success(function(data) {
+                $scope.displayResponseFromServer = JSON.stringify(data, null, 4);
+            })
+            .error(function(data) {
+                $scope.displayResponseFromServer = JSON.stringify(data, null, 4);
+            });
         };
         
         
