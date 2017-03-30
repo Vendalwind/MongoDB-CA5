@@ -11,7 +11,7 @@ angular.module('LearnMongoApp',['ui.router'])
         // Add all the states to it
         var state = {
             codeSnippetStart: "db.createCollection(\"contacts\", ",
-            codeSnippet: "Code snippet",
+            codeSnippet: "\"validator\": {\r\n\t\"$and\": [{\r\n\t\t\"name\": {\r\n\t\t\t\"$exists\": true\r\n\t\t}\r\n\t}, {\r\n\t\t\"year_of_birth\": {\r\n\t\t\t\"$type\": \"int\",\r\n\t\t\t\"$lte\": 1994\r\n\t\t}\r\n\t}, {\r\n\t\t\"phone\": {\r\n\t\t\t\"$type\": \"int\"\r\n\t\t}\r\n\t}, {\r\n\t\t\"email\": {\r\n\t\t\t\"$type\": \"string\"\r\n\t\t}\r\n\t}]\r\n}",
             codeSnippetEnd: "});",
             blankOutResponseFromServer: true,
             actionButtonMessage: "Run",
@@ -47,7 +47,8 @@ angular.module('LearnMongoApp',['ui.router'])
         $scope.displayResponseFromServer = "";
         
         /**
-         * Applies the state that is in the 
+         * Applies the state that is in the states array
+         * at the specified index. 
          */
         $scope.applyState = function(indexOfStateToApply) {
             
