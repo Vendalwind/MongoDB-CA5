@@ -55,6 +55,26 @@ angular.module('LearnMongoApp',['ui.router'])
         };
         $scope.states.push(state);
         
+        state = {
+            blankOutResponseFromServer: true,
+            actionButtonMessage: "Run",
+            nextStateAction: function() {
+                var response = $scope.insertIntoCollection();
+                $scope.displayResponseFromServer = response;
+                $scope.applyNextState();
+            }
+        };
+        $scope.states.push(state);
+        
+        state = {
+            blankOutResponseFromServer: false,
+            actionButtonMessage: "Start Over",
+            nextStateAction: function() {
+                $scope.applyNextState();
+            }
+        };
+        $scope.states.push(state);
+        
         // The properties that are displayed in the front end
         // These first few properties are for displaying the current
         // state's data. They are the same as the data members found
