@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>MongoDB Validation Tutorial</title>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="javascripts/comments.js"></script>
-    <link rel="stylesheet" type="text/css" href="stylesheets/main.css"/>
+    <head>
+        <title>MongoDB Validation Tutorial</title>
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="javascripts/index.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
 
-</head>
+    </head>
 
-<body>
-<h1 id="MainH">MongoDB Validation Feature Tutorial</h1>
-<!--MainH will be hidden after first slide change -->
-<div id="ColumnLeft">
-    <!--Left hand column div-->
-<br>
-<h3 id="SlideTitle">In this tutorial, you'll learn all about MongoDB Validation</h3>
-<br>
-<p id="Para">The purpose of MongoDB Validation is to make sure that all documents conform to a certain standard. Once you add the validation, all documents that are inserted into the database will have to meet the standard or the insertion will fail.
-    Ready to learn more? Press Next to try it out.</p>
-</div>
-
-<div id="ColumnRight">
-    <form id="Example" action="">
-        <textarea rows="15" id="ExampleText" placeholder="Code you'll use and copy will be given to you here later on in the tutorial" disabled="true"></textarea><br>
-        <textarea rows="15" id="Input" placeholder="This is where you will add and edit the code later"></textarea><br>
-    </form>
-    <button id="Next">Next</button>
-    <button id="Run">Run</button>
-</div>
-</body>
+    <body>
+         
+        <div class="container">
+            
+            <!-- Left column -->
+            <div class="left column col-lg-5 col-lg-offset-1">
+                <p>This is the left div</p>
+            </div>
+            
+            <!-- Right column -->
+            <div class="right column col-lg-5">
+                <p>This is the right div</p>
+                
+                <!-- For writing code -->
+                <div class="codebox-container">
+                    <p class="codeSnippetStart">{{codeSnippetStart}}</p>
+                    <textarea id="codeEditor" class="codebox">{{codeSnippet}}</textarea>
+                    <p class="codeSnippetEnd">{{codeSnippetEnd}}</p>
+                </div>
+                
+                <!-- For displaying the response -->
+                <div class="codebox-container">
+                    <textarea id="responseDisplay" class="codebox" readonly>{{responseFromServer}}</textarea>
+                </div>
+                
+                <!-- The button that is clicked to perform the next action -->
+                <div class="codebox-container">
+                    <button id="action" class="btn pull-right">{{actionButtonMessage}}</button>
+                </div>
+                
+                
+            </div>
+            
+        </div>
+        
+        
+    </body>
 </html>

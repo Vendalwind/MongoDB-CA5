@@ -3,6 +3,48 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.column {
+    border-style: solid;
+    border-width: 5px;
 }
+
+.left {
+    border-color: red;
+}
+
+.right {
+    border-color: blue;
+}
+
+.codebox-container {
+    margin: 20px 0px;
+}
+
+.codebox, .codeSnippetStart, .codeSnippetEnd {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: .75em;
+    line-height: 150%;
+}
+
+.codeSnippetStart {
+    margin: 0px 0px 2px 0px;
+    padding: 0px;
+}
+
+.codebox {
+    border-style: solid;
+    margin: 0px;
+    height: 200px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.codeSnippetEnd {
+    margin: 2px 0px 0px 0px;
+    padding: 0px;
+}
+
+#responseDisplay {
+    background-color: #e0e0e0;
+}
+
