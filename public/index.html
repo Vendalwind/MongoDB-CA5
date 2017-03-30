@@ -9,10 +9,48 @@
         <script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
         <link rel="stylesheet" type="text/css" href="stylesheets/style.css"/>
         <script src="javascripts/index.js"></script>
+        <script type="text/javascript">
+            $(window).load(function(){
+                modal.style.display = "block";
+            });
+        </script>
     </head>
 
     <body ng-app="LearnMongoApp" ng-controller="LearnMongoCtrl">
-         
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h1>MongoDB Validation Feature Tutorial</h1>
+            <h3>In this tutorial, you’ll learn all about MongoDB Validation</h3>
+            <btn class="close">&times;</btn>
+            <p>The purpose of MongoDB Validation is to make sure that all documents conform to a certain standard. Once you add the validation, all documents that are inserted into the database will have to meet the standard or the insertion will fail.
+                Ready to learn more? Click anywhere outside of this box or the X to begin.</p>
+        </div>
+
+    </div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the <span> element that closes the modal
+        var btn = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, closethe modal
+        btn.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+    </div>
         <div class="container">
             
             <div class="text-center">
