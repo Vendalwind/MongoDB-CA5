@@ -33,6 +33,10 @@ p {
     line-height: 150%;
 }
 
+.codeSnippetStart, .codeSnippetEnd {
+    text-align: left;
+}
+
 .codeSnippetStart {
     margin: 0px 0px 2px 0px;
     padding: 0px;
