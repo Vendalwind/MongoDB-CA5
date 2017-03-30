@@ -78,7 +78,7 @@ angular.module('LearnMongoApp',['ui.router'])
         
         state = {
             title: "Fix the document to pass validation",
-            explanation: "<p>Congrats, it worked this time!</p>",
+            explanation: "<p>Did it come back with an \"ok\" response? If so, congrats! If not, better luck next time!</p>",
             blankOutResponseFromServer: false,
             actionButtonMessage: "Start Over",
             nextStateAction: function() {
