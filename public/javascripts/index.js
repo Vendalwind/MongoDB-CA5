@@ -10,6 +10,7 @@ angular.module('LearnMongoApp',['ui.router'])
         
         // Add all the states to it
         var state = {
+            title: "Create a validated collection",
             codeSnippetStart: "db.createCollection(\"contacts\", ",
             codeSnippet: "{\r\n\t\"validator\": {\r\n\t\t\"$and\": [{\r\n\t\t\t\"name\": {\r\n\t\t\t\t\"$exists\": true\r\n\t\t\t}\r\n\t\t}, {\r\n\t\t\t\"year_of_birth\": {\r\n\t\t\t\t\"$type\": \"int\",\r\n\t\t\t\t\"$lte\": 1994\r\n\t\t\t}\r\n\t\t}, {\r\n\t\t\t\"phone\": {\r\n\t\t\t\t\"$type\": \"int\"\r\n\t\t\t}\r\n\t\t}, {\r\n\t\t\t\"email\": {\r\n\t\t\t\t\"$type\": \"string\"\r\n\t\t\t}\r\n\t\t}]\r\n\t}\r\n}",
             codeSnippetEnd: "});",
@@ -24,6 +25,7 @@ angular.module('LearnMongoApp',['ui.router'])
         $scope.states.push(state);
         
         state = {
+            title: "Create a validated collection",
             blankOutResponseFromServer: false,
             actionButtonMessage: "Next",
             nextStateAction: function() {
@@ -33,6 +35,7 @@ angular.module('LearnMongoApp',['ui.router'])
         $scope.states.push(state);
         
         state = {
+            title: "Validation in action",
             codeSnippetStart: "db.getCollection(\"contacts\").insert({",
             codeSnippet: "{\r\n\t\"name\": \"Bob Smith\",\r\n\t\"year_of_birth\": 1995,\r\n\t\"phone\": 1234567890,\r\n\t\"email\": \"someone@company.com\"\r\n}",
             codeSnippetEnd: "});",
@@ -47,6 +50,7 @@ angular.module('LearnMongoApp',['ui.router'])
         $scope.states.push(state);
         
         state = {
+            title: "Validation in action",
             blankOutResponseFromServer: false,
             actionButtonMessage: "Next",
             nextStateAction: function() {
@@ -56,6 +60,7 @@ angular.module('LearnMongoApp',['ui.router'])
         $scope.states.push(state);
         
         state = {
+            title: "Fix the document to pass validation",
             blankOutResponseFromServer: true,
             actionButtonMessage: "Run",
             nextStateAction: function() {
@@ -67,6 +72,7 @@ angular.module('LearnMongoApp',['ui.router'])
         $scope.states.push(state);
         
         state = {
+            title: "Fix the document to pass validation",
             blankOutResponseFromServer: false,
             actionButtonMessage: "Start Over",
             nextStateAction: function() {
@@ -79,6 +85,7 @@ angular.module('LearnMongoApp',['ui.router'])
         // These first few properties are for displaying the current
         // state's data. They are the same as the data members found
         // in the state objects.
+        $scope.displayTitle = "";
         $scope.displayCodeSnippetStart = "";
         $scope.displayCodeSnippetEnd = "";
         $scope.displayActionButtonMessage = "";
@@ -101,6 +108,9 @@ angular.module('LearnMongoApp',['ui.router'])
             // Set all the data members from that state
             // and set their valies in the UI
             var stateToBeApplied = $scope.states[indexOfStateToApply];
+            
+            // Set the title
+            $scope.displayTitle = stateToBeApplied.title;
             
             // We will only change the code snippet if we need to
             if(stateToBeApplied.codeSnippet) {
