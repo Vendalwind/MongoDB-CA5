@@ -18,8 +18,12 @@ router.post('/mongo/collections', function(req, res, next) {
         if(err)
             return res.status(500).send(err);
         
-        // Create the collection in the DB
+        // Delete the collection if it exists
         var collectionName = data.name;
+        var collection = db.collection(collectionName);
+        collection.drop(function(err, reply) {});
+        
+        // Create the collection in the DB
         var options = data.options;
         db.createCollection(collectionName, options, function(err, collection) {
             if(err)
