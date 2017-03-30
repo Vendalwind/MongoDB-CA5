@@ -1,55 +1,33 @@
 var express = require('express');
 var router = express.Router();
+var MONGO_DB_URI = "mongodb://localhost:27017/learn";
 
-/* Set up mongoose in order to connect to mongo database */
-var mongoose = require('mongoose'); //Adds mongoose as a usable dependency
+/**
+ * Creates a new collection
+ */
+router.post('/mongo/create', function(req, res, next) {
+    
+    // Get the data that was sent in the post
+    var data = req.body;
 
-mongoose.connect('mongodb://localhost/commentDB'); //Connects to a mongo database called "commentDB"
-
-var commentSchema = mongoose.Schema({ //Defines the Schema for this database
-Name: String,
-Comment: String
+    // Initialize the mongo client
+    var MongoClient = require('mongodb').MongoClient;
+    
+    // Connect to the database
+    MongoClient.connect(MONGO_DB_URI, function(err, db) {
+        if(err)
+            return res.status(500).send(err);
+        
+        // Create the collection in the DB
+        var collectionName = data.name;
+        var options = data.options;
+        db.createCollection(collectionName, options, function(err, collection) {
+            if(err)
+                return res.status(500).send(err);
+            
+            return res.status(201).send('Collection ' + collectionName + ' created successfully');
+        });
+    });
 });
-
-var Comment = mongoose.model('Comment', commentSchema); //Makes an object from that schema as a model
-
-var db = mongoose.connection; //Saves the connection as a variable to use
-db.on('error', console.error.bind(console, 'connection error:')); //Checks for connection errors
-db.once('open', function() { //Lets us know when we're connected
-console.log('Connected');
-});
-
-/* GET home page. */
-//router.get('/', function(req, res, next) {
-//res.render('index', { title: 'Express' });
-//});
-
-router.post('/comment', function(req, res, next) {
-console.log("POST comment route"); //[1]
-console.log(req.body); //[2]
-var newcomment = new Comment(req.body); //[3]
-console.log(newcomment); //[3]
-newcomment.save(function(err, post) { //[4]
-  if (err) return console.error(err);
-  console.log(post);
-  res.sendStatus(200);
-});
-});
-
-/* GET comments from database */
-router.get('/comment', function(req, res, next) {
-console.log("In the GET route?");
-Comment.find(function(err,commentList) { //Calls the find() method on your database
-  if (err) return console.error(err); //If there's an error, print it out
-  else {
-    console.log(commentList); //Otherwise console log the comments you found
-  }
-	res.json(commentList); //Then send the comments
-})
-});
-
-router.delete('/comment', function(req, res, next) {
-Comment.remove({}, function() {})
-})
 
 module.exports = router;
