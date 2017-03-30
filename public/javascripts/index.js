@@ -17,7 +17,7 @@ angular.module('LearnMongoApp',['ui.router'])
             actionButtonMessage: "Run",
             nextStateAction: function() {
                 var response = $scope.createCollection();
-                $scope.displayResponseFromServer = JSON.stringify(response, null, 2);
+                $scope.displayResponseFromServer = response;
                 $scope.applyNextState();
             }
         };
@@ -27,7 +27,30 @@ angular.module('LearnMongoApp',['ui.router'])
             blankOutResponseFromServer: false,
             actionButtonMessage: "Next",
             nextStateAction: function() {
-                alert('Now we should switch to the next state');
+                $scope.applyNextState();
+            }
+        };
+        $scope.states.push(state);
+        
+        state = {
+            codeSnippetStart: "db.getCollection(\"contacts\").insert({",
+            codeSnippet: "{\r\n\t\"name\": \"Bob Smith\",\r\n\t\"year_of_birth\": 1995,\r\n\t\"phone\": 1234567890,\r\n\t\"email\": \"someone@company.com\"\r\n}",
+            codeSnippetEnd: "});",
+            blankOutResponseFromServer: true,
+            actionButtonMessage: "Run",
+            nextStateAction: function() {
+                var response = $scope.insertIntoCollection();
+                $scope.displayResponseFromServer = response;
+                $scope.applyNextState();
+            }
+        };
+        $scope.states.push(state);
+        
+        state = {
+            blankOutResponseFromServer: false,
+            actionButtonMessage: "Next",
+            nextStateAction: function() {
+                $scope.applyNextState();
             }
         };
         $scope.states.push(state);
@@ -98,11 +121,11 @@ angular.module('LearnMongoApp',['ui.router'])
         
         /* API calls */
         $scope.createCollection = function() {
-            return "Successfully created";
+            return 'Successfully created';
         };
         
         $scope.insertIntoCollection = function() {
-            
+            return 'A message from the server';
         };
         
         
